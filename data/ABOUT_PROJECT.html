@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About the Project</title>
+  <style>
+    :root {
+      color-scheme: dark;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      color: #e5e7eb;
+      background: #020617;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background: radial-gradient(circle at top left, rgba(59, 130, 246, 0.18), transparent 30%),
+        radial-gradient(circle at bottom right, rgba(14, 165, 233, 0.14), transparent 28%),
+        linear-gradient(180deg, #05070f 0%, #0b1425 100%);
+      display: flex;
+      justify-content: center;
+      padding: 32px;
+    }
+
+    .container {
+      width: min(100%, 1120px);
+    }
+
+    .card {
+      position: relative;
+      overflow: hidden;
+      border-radius: 36px;
+      border: 1px solid rgba(148, 163, 184, 0.14);
+      background: rgba(10, 18, 35, 0.92);
+      box-shadow: 0 40px 120px rgba(1, 10, 27, 0.55);
+      backdrop-filter: blur(24px);
+      padding: 48px;
+    }
+
+    .card::after {
+      content: "";
+      position: absolute;
+      top: -15%;
+      right: -20%;
+      width: 360px;
+      height: 360px;
+      background: radial-gradient(circle, rgba(59,130,246,0.18), transparent 60%);
+      filter: blur(24px);
+      pointer-events: none;
+    }
+
+    .hero {
+      display: grid;
+      gap: 24px;
+      align-items: start;
+      grid-template-columns: minmax(0, 1.4fr) minmax(260px, 0.8fr);
+    }
+
+    .hero-content {
+      max-width: 720px;
+    }
+
+    .label {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0.75rem 1.1rem;
+      border-radius: 999px;
+      border: 1px solid rgba(96, 165, 250, 0.22);
+      background: rgba(56, 189, 248, 0.1);
+      color: #bae6fd;
+      font-size: 0.95rem;
+      font-weight: 600;
+      letter-spacing: 0.02em;
+      text-transform: uppercase;
+      width: fit-content;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: clamp(3rem, 4vw, 4.5rem);
+      line-height: 1.02;
+      letter-spacing: -0.05em;
+      color: #f8fafc;
+      max-width: 14ch;
+    }
+
+    .intro {
+      margin-top: 22px;
+      font-size: 1.05rem;
+      line-height: 1.85;
+      color: #cbd5e1;
+      max-width: 44rem;
+    }
+
+    .summary-box {
+      padding: 26px;
+      background: rgba(30, 41, 59, 0.82);
+      border-radius: 28px;
+      border: 1px solid rgba(148, 163, 184, 0.12);
+      color: #e5e7eb;
+      box-shadow: inset 0 0 0 1px rgba(148, 163, 184, 0.05);
+    }
+
+    .summary-title {
+      margin: 0 0 1rem;
+      font-size: 1.15rem;
+      color: #f8fafc;
+    }
+
+    .summary-list {
+      margin: 0;
+      padding-left: 1.2rem;
+      display: grid;
+      gap: 0.85rem;
+    }
+
+    .summary-list li {
+      list-style: disc;
+      color: #cbd5e1;
+    }
+
+    section {
+      margin-top: 42px;
+    }
+
+    h2 {
+      margin-bottom: 18px;
+      font-size: 1.35rem;
+      color: #f8fafc;
+    }
+
+    .feature-grid {
+      display: grid;
+      gap: 18px;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .feature-card {
+      padding: 24px;
+      background: rgba(15, 23, 42, 0.92);
+      border-radius: 24px;
+      border: 1px solid rgba(148, 163, 184, 0.08);
+      box-shadow: 0 18px 40px rgba(2, 12, 28, 0.18);
+    }
+
+    .feature-card p {
+      margin: 0.55rem 0 0;
+      color: #cbd5e1;
+      font-size: 0.98rem;
+      line-height: 1.75;
+    }
+
+    ul.details {
+      padding-left: 1.4rem;
+      display: grid;
+      gap: 0.8rem;
+    }
+
+    ul.details li {
+      list-style-type: disc;
+      color: #cbd5e1;
+    }
+
+    .callout {
+      margin-top: 28px;
+      padding: 26px;
+      border-radius: 28px;
+      background: linear-gradient(180deg, rgba(14, 116, 144, 0.12), rgba(15, 23, 42, 0.72));
+      border: 1px solid rgba(56, 189, 248, 0.18);
+      color: #dbeafe;
+    }
+
+    .callout strong {
+      color: #a5f3fc;
+    }
+
+    .footer {
+      margin-top: 42px;
+      padding-top: 24px;
+      border-top: 1px solid rgba(148, 163, 184, 0.12);
+      color: #94a3b8;
+      font-size: 0.98rem;
+    }
+
+    @media (max-width: 860px) {
+      .hero {
+        grid-template-columns: 1fr;
+      }
+
+      .feature-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 560px) {
+      .card {
+        padding: 28px;
+      }
+
+      h1 {
+        font-size: clamp(2.4rem, 9vw, 3.1rem);
+      }
+
+      .summary-box,
+      .feature-card,
+      .callout {
+        padding: 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="card">
+      <div class="hero">
+        <div class="hero-content">
+          <span class="label">Project Overview</span>
+          <h1>Scaffold-ETH 2 Starter dApp</h1>
+          <p class="intro">This repository is a developer-oriented Ethereum starter stack built with <strong>Hardhat</strong>, <strong>Next.js</strong>, and modern web3 tooling. It is designed to become a polished release-ready starter for contract-driven applications.</p>
+          <div class="summary-box">
+            <h3 class="summary-title">Core architecture</h3>
+            <ul class="summary-list">
+              <li>Backend: Solidity + Hardhat + Rocketh deploy scripts</li>
+              <li>Frontend: Next.js App Router + React 19 + TypeScript</li>
+              <li>Web3 stack: Wagmi, Viem, RainbowKit, @scaffold-ui/components, DaisyUI</li>
+              <li>Deployment: Local chain support with network config for live chains</li>
+            </ul>
+          </div>
+        </div>
+        <div class="summary-box">
+          <h3 class="summary-title">Why this repo matters</h3>
+          <ul class="summary-list">
+            <li>Great foundation for token apps, NFT experiences, staking, or DAO tooling.</li>
+            <li>Strong developer onboarding with built-in commands and starter UIs.</li>
+            <li>Easy to extend while preserving current stack and workflow.</li>
+          </ul>
+        </div>
+      </div>
+
+      <section>
+        <h2>Detailed project scope</h2>
+        <div class="feature-grid">
+          <div class="feature-card">
+            <h3>Smart contract layer</h3>
+            <p>Enhance the current greeting contract and add one or more real-world Solidity examples such as token minting, NFT drops, staking, or subscription payments. Focus on security, access control, and test coverage.</p>
+          </div>
+          <div class="feature-card">
+            <h3>Frontend polish</h3>
+            <p>Build an intuitive interaction page that lets users connect wallets, read contract state, submit transactions, and receive live feedback. Make the experience visually appealing and easy to use.</p>
+          </div>
+          <div class="feature-card">
+            <h3>Release readiness</h3>
+            <p>Prepare the project for launch by adding documentation, a deployment workflow, and a launch checklist. Ensure the repo is ready for contributors and public users.</p>
+          </div>
+          <div class="feature-card">
+            <h3>Integration support</h3>
+            <p>Wire frontend contract metadata automatically so deployment results are reflected without manual editing. Add helpers or scripts to update contract address/ABI config.</p>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <h2>What’s included today</h2>
+        <ul class="details">
+          <li>Starter contract: `packages/hardhat/contracts/YourContract.sol` with greeting state, premium flag, counters, and owner withdraw.</li>
+          <li>Deploy script: `packages/hardhat/deploy/00_deploy_your_contract.ts` using Rocketh and named accounts.</li>
+          <li>Frontend starter page: `packages/nextjs/app/page.tsx` with wallet address display and navigation hints.</li>
+          <li>Empty frontend contract metadata file: `packages/nextjs/contracts/deployedContracts.ts` ready to receive generated addresses.
+</li>
+          <li>Config file: `packages/nextjs/scaffold.config.ts` with local network defaults and API key placeholders.</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>Release-ready improvements</h2>
+        <ul class="details">
+          <li>Add contract examples that demonstrate real usage scenarios and business logic.</li>
+          <li>Implement UI flows for contract reads, writes, event history, and success/error states.</li>
+          <li>Add developer documentation for setup, deployment, and extending the repo.</li>
+          <li>Ensure the codebase passes build, lint, typecheck, and test validation before release.</li>
+        </ul>
+      </section>
+
+      <div class="callout">
+        <strong>Next steps:</strong> turn this starter into a polished release by focusing on one strong contract use case, clear wallet-driven UX, and complete developer onboarding with launch-ready docs.
+      </div>
+
+      <div class="footer">
+        <p>This project is built to be a useful open-source starter — now it needs the finishing touches to become a release-quality Ethereum developer experience.</p>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
